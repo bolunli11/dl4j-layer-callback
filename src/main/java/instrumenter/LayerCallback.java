@@ -17,7 +17,6 @@ public class LayerCallback {
 
     public native void callbackLayerInfo();
 
-    //For now, below code is useless
     private static class TimeClassFileTransformer implements ClassFileTransformer {
         @Override
         public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
@@ -112,7 +111,7 @@ public class LayerCallback {
         LayerCallback ai = new  LayerCallback();
         ai.callbackLayerInfo();
 
-        System.out.println("Method start: " + method);
+        System.out.println("Layer start: " + method);
         timeCache.put(method, System.currentTimeMillis());
     }
 
