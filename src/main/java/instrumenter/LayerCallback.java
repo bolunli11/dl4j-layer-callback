@@ -15,7 +15,7 @@ public class LayerCallback {
 
     private static Instrumentation instrumentation;
 
-    public native void callbackLayerInfo();
+    public native void callbackLayerInfo(String layerName, int index, String direction);
 
     private static class TimeClassFileTransformer implements ClassFileTransformer {
         @Override
@@ -107,17 +107,16 @@ public class LayerCallback {
     }
   }
 
-    public static void start(String method) {
+    public static void start(String layerName, int index, String direction) {
         LayerCallback ai = new  LayerCallback();
-        ai.callbackLayerInfo();
+        ai.callbackLayerInfo(layerName, index, direction);
 
-        System.out.println("Layer start: " + method);
-        timeCache.put(method, System.currentTimeMillis());
+        // System.out.println("<Layer start callback> Layer name: " + layerName + " index: " + index + " direction: " + direction);
     }
 
-    public static long cost(String method) {
-        System.out.println("Method end: " + method);
-        return System.currentTimeMillis() - timeCache.get(method);
-    }
+    // public static long cost(String method) {
+    //     System.out.println("Method end: " + method);
+    //     return System.currentTimeMillis() - timeCache.get(method);
+    // }
 
 }
